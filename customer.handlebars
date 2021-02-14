@@ -1,0 +1,45 @@
+<html>
+
+<h3>Add new Customer:</h3>
+<form id="addcust" action="/customer" method="post">
+    First Name: <input type="text" name="CusFirst"><br>
+    Last Name: <input type="text" name="CusLast"><br>
+    Phone Number: <input type="text" name="PhoneNum"> 
+        
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+
+
+<form id='search' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search customers by first name starting with:</label>
+    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchCusByFirstName()">
+</form>
+<br/>
+
+<h3>Our Customers:</h3>
+<table>
+    <thead> 
+        <th>ID</th>
+        <th>First Name</th> 
+        <th>Last Name</th> 
+        <th>Phone Number</th>
+    </thead> 
+    <tbody>
+        {{#each customers}} 
+        <tr> 
+            <td>{{CustomerID}}</td>
+            <td>{{CusFirst}}</td> 
+            <td>{{CusLast}}</td> 
+            <td>{{PhoneNum}}</td> 
+            
+            <td><button onclick="deleteCustomer({{CustomerID}})">Delete</button></td>
+            <td><a href="/customer/{{CustomerID}}">Update</a></td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+</html>
